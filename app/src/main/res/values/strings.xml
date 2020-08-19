@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyRoomShoppingList</string>
+    <string name="et_hint_quantity">Anzahl</string>
+    <string name="btn_add_text">+</string>
+    <string name="et_hint_product">Artikel</string>
+    <string name="settings_text">Settings</string>
+</resources>
