@@ -26,12 +26,14 @@ class ShoppingMemoListAdapter : RecyclerView.Adapter<ShoppingMemoListAdapter.Sho
     }
 //endregion
 
+    // Layout des Recyclerviews erzeugen: Layoutdatei = Layout des einzelnen eintrages
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingMemoViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(android.R.layout.simple_list_item_multiple_choice, parent,false)
         return ShoppingMemoViewHolder(itemView)
     }
 
+    // Layoutelemente mit den eingangsdaten verbinden
     override fun onBindViewHolder(holder: ShoppingMemoViewHolder, position: Int) {
         val currrentShoppingMemo = shoppingMemos.get(position)
         val textView = holder.itemView as TextView
