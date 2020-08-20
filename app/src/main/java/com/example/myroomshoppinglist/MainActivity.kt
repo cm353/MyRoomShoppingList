@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        // Recycler-View aufbauen
         lv_shopping_memos.layoutManager = LinearLayoutManager(this)
         lv_shopping_memos.adapter = adapter
         // Viewmodel initialisieren
@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         }
         // Dem Adapter mit dem Viewmodel koppeln
         // Die Liste des Viemodels wird nun vom Recyclerview beobachtet
+        // Die Liste mit den Einträgen der DB wird in den adapter eingefügt
         shoppingListViewModel!!.getAllShoppingMemos().observe(this, Observer {
             adapter.setShoppingMemos(it)
         })
@@ -55,9 +56,10 @@ class MainActivity : AppCompatActivity() {
         })
 
 // region Touchhelper
-        var itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,
+        // Hinzufügen von Touchfunktionen für die Einträge der Recyclerview
+        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-// nur return falss, da kein Move unterstützt werden soll
+// nur return false, da kein Move unterstützt werden soll
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -67,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
 // Implementierung von aktionen, wenn nach links und nach rechts geswipt wird
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+    // Den aktuellen eintrag finden und das zugehörige Objekt aus der liste holen
                 val currentMemo = shoppingListViewModel!!.getAllShoppingMemos().value!!.get(viewHolder.adapterPosition)
                 when(direction) {
                     ItemTouchHelper.RIGHT -> {

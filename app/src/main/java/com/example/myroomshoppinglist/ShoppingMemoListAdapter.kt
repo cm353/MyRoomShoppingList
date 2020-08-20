@@ -48,7 +48,7 @@ class ShoppingMemoListAdapter : RecyclerView.Adapter<ShoppingMemoListAdapter.Sho
             textView.setTextColor(Color.DKGRAY)
         }
 
-// Listener eingfügen
+// Den on click Listener auf das Textfeld der Layout des einzeleintrages setzen
         textView.setOnClickListener{
             if(onItemClickListener != null) {
                 onItemClickListener!!.onItemClick(shoppingMemos.get(position))
